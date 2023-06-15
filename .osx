@@ -74,14 +74,29 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
 # defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1
 
-# Trackpad: Clicking
-defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
-
 # Trackpad: map bottom right corner to right-click (requires restart!)
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 # defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 # defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
 # defaults write NSGlobalDomain ContextMenuGesture -int 1
+
+# Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Trackpad: enable right click with two fingers
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+
+# Enable extra multifinger gestures (such as three finger swipe down = app expose)
+defaults write com.apple.dock showMissionControlGestureEnabled -bool true
+defaults write com.apple.dock showAppExposeGestureEnabled -bool true
+defaults write com.apple.dock showDesktopGestureEnabled -bool true
+defaults write com.apple.dock showLaunchpadGestureEnabled -bool true
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
